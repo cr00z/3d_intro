@@ -6,7 +6,7 @@
 
 ## Raytracer (трассировщик лучей)
 
-![raytracer_1](https://raw.githubusercontent.com/cr00z/3d_intro/screenshot/raytracer_1.png "Камера 1")
-![raytracer_2](https://raw.githubusercontent.com/cr00z/3d_intro/screenshot/raytracer_2.png "Камера 2")
+![raytracer_1](https://raw.githubusercontent.com/cr00z/3d_intro/master/screenshot/raytracer_1.png "Камера 1")
+![raytracer_2](https://raw.githubusercontent.com/cr00z/3d_intro/master/screenshot/raytracer_2.png "Камера 2")
 
 ## Rasterizer (растеризатор)
