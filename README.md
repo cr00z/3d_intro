@@ -10,3 +10,5 @@
 ![raytracer_2](https://raw.githubusercontent.com/cr00z/3d_intro/master/screenshot/raytracer_2.png "Камера 2")
 
 ## Rasterizer (растеризатор)
+
+Готов частично
