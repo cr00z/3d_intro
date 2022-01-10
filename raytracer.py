@@ -2,6 +2,7 @@ import tkinter as tk
 import numpy as np
 from dataclasses import dataclass
 from typing import ClassVar, Tuple
+import utils
 
 
 @dataclass
@@ -25,8 +26,8 @@ class Light:
 
 
 # constants
-canvas_width = 600
-canvas_height = 600
+canvas_width = 200
+canvas_height = 200
 viewport_size = 1
 projection_plane_z = 1
 background_color = np.array((0, 0, 32))
@@ -189,27 +190,6 @@ def trace_ray(
     return local_color * (1 - reflective) + reflected_color * reflective
 
 
-def put_pixel(
-        buffer: np.ndarray, color: np.ndarray, x: int, y: int
-) -> np.ndarray:
-    """Put pixel into buffer"""
-    sx = canvas_width // 2 + x
-    sy = canvas_height // 2 - y - 1
-    if (sx >= 0) and (sx < canvas_width) and (sy >= 0) and (sy < canvas_height):
-        buffer[sy, sx] = color
-    return buffer
-
-
-def photo_image(buffer: np.ndarray) -> tk.PhotoImage:
-    """Convert into PPM format
-    https://en.wikipedia.org/wiki/Netpbm#Description
-    """
-    height, width = buffer.shape[:2]
-    ppm_header = f'P6 {width} {height} 255 '.encode()
-    data = ppm_header + buffer.tobytes()
-    return tk.PhotoImage(width=width, height=height, data=data, format='PPM')
-
-
 if __name__ == '__main__':
     # init
     root = tk.Tk()
@@ -225,9 +205,9 @@ if __name__ == '__main__':
             color = trace_ray(
                 camera_position, direction, 1, np.inf, recursion_depth
             )
-            buffer = put_pixel(buffer, color.clip(0, 255), x, y)
+            buffer = utils.put_pixel(buffer, color.clip(0, 255), x, y)
 
     # draw buffer
-    img = photo_image(buffer)
+    img = utils.photo_image(buffer)
     canvas.create_image(0, 0, image=img, anchor=tk.NW)
     root.mainloop()
